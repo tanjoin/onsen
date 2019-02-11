@@ -2,9 +2,7 @@ const puppeteer = require('puppeteer');
 const devices = require('puppeteer/DeviceDescriptors');
 const device = devices['iPhone 7'];
 const fs = require('fs');
-const rp = require('request-promise');
 const request = require('request');
-const readline = require('readline');
 
 const ONSEN_URL = "http://www.onsen.ag";
 
