@@ -64,3 +64,4 @@ typings/
 node_modules
 output
 *.png
+history.dat
