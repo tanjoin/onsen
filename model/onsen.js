@@ -21,7 +21,7 @@ module.exports = class Onsen {
     let lastHistory = await this.history.readLast();
     let splitArray = lastHistory.split(' ');
     if (splitArray.length > 1) {
-      this.lastUpdated = new Date(this.history.readLast.split(' ')[0]);
+      this.lastUpdated = new Date(splitArray[0]);
     } else {
       let limit = new Date(this.now.getTime());
       limit.setDate(limit.getDate() - 7);
@@ -144,7 +144,11 @@ module.exports = class Onsen {
   }
 
   async close() {
-    await this.page.close();
-    await this.browser.close();
+    if (this.page) {
+      await this.page.close();
+    }
+    if (this.browser) {
+      await this.browser.close();
+    }
   }
 }
