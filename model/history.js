@@ -9,7 +9,7 @@ module.exports = class History {
 
   insertHistory(data) {
     try {
-      fs.appendFileSync(this.filename, '\n' + data);
+      fs.appendFileSync(this.filename, data + '\n');
     } catch (error) {
       console.error(error);
     }
