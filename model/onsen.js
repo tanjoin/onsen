@@ -67,9 +67,9 @@ module.exports = class Onsen {
         return radio;
       })
       .map((radio) => {
-        let update = new Date('2019/' + radio.update);
+        let update = new Date('2020/' + radio.update);
         if (this.now.getTime() < update.getTime()) {
-          update = new Date('2018/' + radio.update);
+          update = new Date('2019/' + radio.update);
         }
         radio.update = update;
         return radio;
