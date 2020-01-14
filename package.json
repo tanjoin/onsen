@@ -9,9 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cron": "^1.7.1",
-    "puppeteer": "^1.18.1",
+    "cron": "^1.7.2",
+    "puppeteer": "^1.20.0",
     "request": "^2.88.0",
-    "request-promise": "^4.2.2"
+    "request-promise": "^4.2.5"
   }
 }
