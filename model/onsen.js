@@ -1,4 +1,4 @@
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
 const devices = require('puppeteer/DeviceDescriptors');
 const device = devices['iPhone 7'];
 const fs = require('fs');
@@ -8,7 +8,8 @@ const History = require('./history');
 const path = require('path');
 
 module.exports = class Onsen {
-  constructor(headless) {
+  constructor(headless, executablePath) {
+    this.executablePath = executablePath;
     this.headless = true;
     if (headless === false) {
       this.headless = false;
@@ -32,7 +33,8 @@ module.exports = class Onsen {
     console.log(`Get radios after ${this.lastUpdated}`);
     this.browser = await puppeteer.launch({
       headless: this.headless,
-      args: ['--lang=ja,en-US,en']
+      args: ['--lang=ja,en-US,en'],
+      executablePath: this.executablePath
     });
     this.page = await this.browser.newPage();
     await this.page.emulate(device);

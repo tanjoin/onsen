@@ -1,7 +1,7 @@
 const Onsen = require('./model/onsen');
 
 async function main() {
-  const onsen = new Onsen();
+  const onsen = new Onsen(true, '/Applications/Google\ Chrome.app');
   try {
     await onsen.init();
     await onsen.run();
@@ -13,6 +13,6 @@ async function main() {
 
 // -- main --
 
-if (typeof require != 'undefined' && require.main==module) {
+if (typeof require != 'undefined' && require.main == module) {
     main();
 }
