@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer-core');
-const devices = require('puppeteer/DeviceDescriptors');
+const devices = require('puppeteer-core/DeviceDescriptors');
 const device = devices['iPhone 7'];
 const fs = require('fs');
 const request = require('request');
