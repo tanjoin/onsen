@@ -1,7 +1,7 @@
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
 const util = require('util');
 const fs = require('fs');
-const devices = require('puppeteer/DeviceDescriptors');
+const devices = require('puppeteer-core/DeviceDescriptors');
 const device = devices['iPad Pro'];
 const childProcess = require('child_process');
 const exec = util.promisify(childProcess.exec);
@@ -22,7 +22,8 @@ module.exports = class Onsen {
 
     this.browser = await puppeteer.launch({
       headless: this.headless,
-      args: ['--lang=ja,en-US,en']
+      args: ['--lang=ja,en-US,en'],
+      executablePath: "/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
     });
     this.page = await this.browser.newPage();
     await this.page.emulate(device);
