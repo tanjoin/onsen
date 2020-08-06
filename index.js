@@ -1,13 +1,13 @@
-const Onsen = require('./model/onsen');
+const Onsen = require('./model/onsen2');
 
 async function main() {
   const onsen = new Onsen();
   try {
-    await onsen.init();
-    await onsen.run();
+    await onsen.init().catch(e => console.error(e));
+    await onsen.run().catch(e => console.error(e));
     // await onsen.screenshot();
   } finally {
-    await onsen.close();
+    await onsen.close().catch(e => console.error(e));
   }
 }
 

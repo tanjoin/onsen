@@ -12,6 +12,10 @@ touch history.dat
 npm install
 ```
 
+```
+brew install youtube-dl
+```
+
 ## Run
 
 ```
