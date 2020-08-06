@@ -5,10 +5,6 @@
 ## Setup
 
 ```
-touch history.dat
-```
-
-```
 npm install
 ```
 
