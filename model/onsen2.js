@@ -51,7 +51,7 @@ module.exports = class Onsen {
           contents: e.contents
                       .filter((e) => e.streaming_url != null)
                       .map((e) => ({ 
-                        title: e.title.replace(/\//ig, '／'), 
+                        title: e.title.replace(/\//ig, '／'),
                         filename:e.streaming_url.split('/')[6], 
                         streaming_url: e.streaming_url 
                       }))
@@ -68,8 +68,8 @@ module.exports = class Onsen {
           console.log(`Skip:       ${radio.title} ${content.title} ${content.streaming_url}`);
         } else {
           console.log(`Download:   ${radio.title} ${content.title} ${content.streaming_url}`);
-          await exec(`youtube-dl --o "${radio.title} ${content.title} ${content.filename.split('.')[0]}.%(ext)s" ${content.streaming_url}`, {
-            cwd: `output2/${radio.title}`
+          await exec(`youtube-dl --o '${radio.title} ${content.title} ${content.filename.split('.')[0]}.%(ext)s' ${content.streaming_url}`, {
+            cwd: `output2/${radio.title.replace(/\"/ig, '')}`
           });  
         }
       }
