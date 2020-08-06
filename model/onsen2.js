@@ -53,7 +53,7 @@ module.exports = class Onsen {
       const radio = radios[i];
       for (let j = 0; j < radio.contents.length; j++) {
         const content = radio.contents[j];
-        await exec(`mkdir "output2/${radio.title}"`);
+        await exec(`mkdir "output2/${radio.title}"`).catch(e => console.log(`"output2/${radio.title}" exists already!`));
         console.log(`youtube-dl --o "${radio.title}/${radio.title} ${content.title} ${content.filename}.%(ext)s" ${content.streaming_url}`);
         await exec(`youtube-dl --o "${radio.title}/${radio.title} ${content.title} ${content.filename}.%(ext)s" ${content.streaming_url}`, {
           cwd: `output2/${radio.title}`
