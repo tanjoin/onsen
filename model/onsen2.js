@@ -47,11 +47,11 @@ module.exports = class Onsen {
     let radios = await this.page.evaluate(() => {
       return [...window.__NUXT__.state.programs.programs.all]
         .map((e) => ({
-          title: e.title, 
+          title: e.title.replace(/\//ig, '／').replace(/:/ig, '：').replace('\'', '’'), 
           contents: e.contents
                       .filter((e) => e.streaming_url != null)
                       .map((e) => ({ 
-                        title: e.title.replace(/\//ig, '／'),
+                        title: e.title.replace(/\//ig, '／').replace(/:/ig, '：').replace('\'', '’'),
                         filename:e.streaming_url.split('/')[6], 
                         streaming_url: e.streaming_url 
                       }))
@@ -64,11 +64,11 @@ module.exports = class Onsen {
       for (let j = 0; j < radio.contents.length; j++) {
         const content = radio.contents[j];
         await exec(`mkdir "output2/${radio.title}"`).catch(e => {});
-        if (this.fileExists(`output2/${radio.title}/${radio.title} ${content.title} ${content.filename}`)) {
-          console.log(`Skip:       ${radio.title} ${content.title} ${content.streaming_url}`);
+        if (this.fileExists(`output2/${radio.title.replace(/\"/ig, '')}/${radio.title} ${content.title} ${content.filename}`)) {
+          console.log(`${i} Skip:       ${radio.title} ${content.title} ${content.streaming_url}`);
         } else {
-          console.log(`Download:   ${radio.title} ${content.title} ${content.streaming_url}`);
-          await exec(`youtube-dl --o '${radio.title} ${content.title} ${content.filename.split('.')[0]}.%(ext)s' ${content.streaming_url}`, {
+          console.log(`${i} Download:   ${radio.title} ${content.title} ${content.streaming_url}`);
+          await exec(`youtube-dl --o '${radio.title} ${content.title} ${content.filename.split(/\.(?=[^.]+$)/)[0]}.%(ext)s' ${content.streaming_url}`, {
             cwd: `output2/${radio.title.replace(/\"/ig, '')}`
           });  
         }
