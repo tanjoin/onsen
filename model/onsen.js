@@ -94,13 +94,13 @@ module.exports = class Onsen {
       // continue;
       let dir = 'output/' + radio.group + '/';
       fs.mkdirSync(dir, { recursive: true });
-      if (await this.isExists(dir + radio.title.replace(/\//,'／') + '.' + radio.url.split('.').pop())) {
+      if (await this.isExists(dir + radio.title.replace(/\//,'／') + '_' + radio.url.split('/').pop())) {
         console.log(`Exists:   ${radio.update.toLocaleString()} ${radio.title} ${radio.url}`);
         continue;
       }
       console.log(`Download: ${radio.update.toLocaleString()} ${radio.title} ${radio.url}`);
       let response = await this.download(radio.url);
-      response.pipe(await fs.createWriteStream(dir + radio.title.replace(/\//,'／') + '.' + radio.url.split('.').pop()));
+      response.pipe(await fs.createWriteStream(dir + radio.title.replace(/\//,'／') + '_' + radio.url.split('/').pop()));
     }
   }
 
