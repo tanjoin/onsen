@@ -68,7 +68,7 @@ module.exports = class Onsen {
           console.log(`Skip:       ${radio.title} ${content.title} ${content.streaming_url}`);
         } else {
           console.log(`Download:   ${radio.title} ${content.title} ${content.streaming_url}`);
-          await exec(`youtube-dl --o '${radio.title} ${content.title} ${content.filename.split(/\.(?=[^.]+$)/)[0]}.%(ext)s' ${content.streaming_url}`, {
+          await exec(`youtube-dl --output '${radio.title} ${content.title} ${content.filename.split(/\.(?=[^.]+$)/)[0]}.%(ext)s' ${content.streaming_url}`, {
             cwd: `output2/${radio.title.replace(/\"/ig, '')}`
           });  
         }
